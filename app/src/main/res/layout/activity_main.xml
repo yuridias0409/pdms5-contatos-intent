@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Contatos"
+                android:fontFamily="@font/raleway_bold"
+                android:textAlignment="center"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/nomeEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:fontFamily="@font/raleway_bold"
+                android:hint="Nome"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/emailEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:fontFamily="@font/raleway_bold"
+                android:hint="Email"
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                android:id="@+id/telefoneEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="phone"
+                android:fontFamily="@font/raleway_bold"
+                android:hint="Telefone" />
+
+            <CheckBox
+                android:id="@+id/telComercialCb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway_bold"
+                android:text="Telefone comercial?" />
+
+            <Switch
+                android:id="@+id/cellSt"
+                android:layout_width="match_parent"
+                android:layout_height="29dp"
+                android:fontFamily="@font/raleway_bold"
+                android:text=" Adicionar celular?" />
+
+            <EditText
+                android:id="@+id/cellEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:fontFamily="@font/raleway_bold"
+                android:hint="Celular"
+                android:inputType="phone"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/siteEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:fontFamily="@font/raleway_bold"
+                android:hint="Site Pessoal" />
+            
+            <Button
+                android:id="@+id/salvarBt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Salvar"
+                android:fontFamily="@font/raleway_bold"
+                android:textStyle="bold"
+                app:backgroundTint="#6E0DD0" />
+
+            <Button
+                android:id="@+id/emailBt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enviar Email"
+                android:fontFamily="@font/raleway_bold"
+                android:textStyle="bold"
+                app:backgroundTint="#FF6600" />
+
+            <Button
+                android:id="@+id/telefoneBt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chamar Telefone"
+                android:fontFamily="@font/raleway_bold"
+                android:textStyle="bold"
+                app:backgroundTint="#4CAF50" />
+
+            <Button
+                android:id="@+id/siteBt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Acessar Site"
+                android:fontFamily="@font/raleway_bold"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:backgroundTint="#FFC107"
+                app:strokeColor="#000000" />
+
+            <Button
+                android:id="@+id/pdfBt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway_bold"
+                android:text="Gerar PDF"
+                android:textStyle="bold"
+                app:backgroundTint="#E91E63" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
