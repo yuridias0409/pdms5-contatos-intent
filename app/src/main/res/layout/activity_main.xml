@@ -83,13 +83,14 @@
                 android:ems="10"
                 android:fontFamily="@font/raleway_bold"
                 android:hint="Site Pessoal" />
-            
+
             <Button
                 android:id="@+id/salvarBt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Salvar"
                 android:fontFamily="@font/raleway_bold"
+                android:onClick="onClick"
+                android:text="Salvar"
                 android:textStyle="bold"
                 app:backgroundTint="#6E0DD0" />
 
@@ -97,8 +98,9 @@
                 android:id="@+id/emailBt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Enviar Email"
                 android:fontFamily="@font/raleway_bold"
+                android:onClick="onClick"
+                android:text="Enviar Email"
                 android:textStyle="bold"
                 app:backgroundTint="#FF6600" />
 
@@ -106,8 +108,9 @@
                 android:id="@+id/telefoneBt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Chamar Telefone"
                 android:fontFamily="@font/raleway_bold"
+                android:onClick="onClick"
+                android:text="Chamar Telefone"
                 android:textStyle="bold"
                 app:backgroundTint="#4CAF50" />
 
@@ -115,8 +118,9 @@
                 android:id="@+id/siteBt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Acessar Site"
                 android:fontFamily="@font/raleway_bold"
+                android:onClick="onClick"
+                android:text="Acessar Site"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:backgroundTint="#FFC107"
@@ -127,6 +131,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/raleway_bold"
+                android:onClick="onClick"
                 android:text="Gerar PDF"
                 android:textStyle="bold"
                 app:backgroundTint="#E91E63" />
