@@ -13,10 +13,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import pdms5.at2.contatosintent.Model.Contato;
-import pdms5.at2.contatosintent.databinding.ActivityMainBinding;
+import pdms5.at2.contatosintent.databinding.ActivityContatoBinding;
 
-public class MainActivity extends AppCompatActivity {
-    private ActivityMainBinding activityMainBinding;
+public class ContatoActivity extends AppCompatActivity {
+    private ActivityContatoBinding activityContatoBinding;
     private Contato contato;
     private final int CALL_PHONE_PERMISSION_REQUEST_CODE = 1;
 
@@ -25,17 +25,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Ligando (binding) objetos com as Views
-        activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(activityMainBinding.getRoot());
+        activityContatoBinding = ActivityContatoBinding.inflate(getLayoutInflater());
+        setContentView(activityContatoBinding.getRoot());
 
         //Libera o campo de celular
-        activityMainBinding.cellSt.setOnClickListener(new View.OnClickListener() {
+        activityContatoBinding.cellSt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(activityMainBinding.cellSt.isChecked()){
-                    activityMainBinding.cellEt.setVisibility(View.VISIBLE);
+                if(activityContatoBinding.cellSt.isChecked()){
+                    activityContatoBinding.cellEt.setVisibility(View.VISIBLE);
                 }   else{
-                    activityMainBinding.cellEt.setVisibility(View.GONE);
+                    activityContatoBinding.cellEt.setVisibility(View.GONE);
                 }
             }
         });
@@ -43,16 +43,20 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClick(View view){
         Contato contato = new Contato(
-                activityMainBinding.nomeEt.getText().toString(),
-                activityMainBinding.telefoneEt.getText().toString(),
-                activityMainBinding.cellEt.getText().toString(),
-                activityMainBinding.emailEt.getText().toString(),
-                activityMainBinding.siteEt.getText().toString(),
-                activityMainBinding.telComercialCb.isChecked()
+                activityContatoBinding.nomeEt.getText().toString(),
+                activityContatoBinding.telefoneEt.getText().toString(),
+                activityContatoBinding.cellEt.getText().toString(),
+                activityContatoBinding.emailEt.getText().toString(),
+                activityContatoBinding.siteEt.getText().toString(),
+                activityContatoBinding.telComercialCb.isChecked()
         );
 
         switch (view.getId()){
             case R.id.salvarBt:
+                Intent retornoIntent =  new Intent();
+                retornoIntent.putExtra(Intent.EXTRA_USER, contato);
+                setResult(RESULT_OK, retornoIntent);
+                finish();
                 break;
             case R.id.emailBt:
                 Intent enviarEmailIntent = new Intent(Intent.ACTION_SENDTO);
@@ -77,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void verifyCallPhonePermission() {
         Intent ligarIntent = new Intent(Intent.ACTION_CALL);
-        ligarIntent.setData(Uri.parse("tel: " + activityMainBinding.telefoneEt.getText().toString()));
+        ligarIntent.setData(Uri.parse("tel: " + activityContatoBinding.telefoneEt.getText().toString()));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if(checkSelfPermission(Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED){
