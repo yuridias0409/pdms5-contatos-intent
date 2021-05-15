@@ -95,38 +95,6 @@
                 app:backgroundTint="#6E0DD0" />
 
             <Button
-                android:id="@+id/emailBt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/raleway_bold"
-                android:onClick="onClick"
-                android:text="Enviar Email"
-                android:textStyle="bold"
-                app:backgroundTint="#FF6600" />
-
-            <Button
-                android:id="@+id/telefoneBt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/raleway_bold"
-                android:onClick="onClick"
-                android:text="Chamar Telefone"
-                android:textStyle="bold"
-                app:backgroundTint="#4CAF50" />
-
-            <Button
-                android:id="@+id/siteBt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/raleway_bold"
-                android:onClick="onClick"
-                android:text="Acessar Site"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:backgroundTint="#FFC107"
-                app:strokeColor="#000000" />
-
-            <Button
                 android:id="@+id/pdfBt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -134,7 +102,7 @@
                 android:onClick="onClick"
                 android:text="Gerar PDF"
                 android:textStyle="bold"
-                app:backgroundTint="#E91E63" />
+                app:backgroundTint="#FF6600" />
 
         </LinearLayout>
     </ScrollView>
