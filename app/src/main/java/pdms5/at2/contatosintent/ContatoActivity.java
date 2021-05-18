@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
 import android.os.Build;
@@ -139,6 +141,7 @@ public class ContatoActivity extends AppCompatActivity {
         View conteudo = activityContatoBinding.getRoot();
         int largura = conteudo.getWidth();
         int altura = conteudo.getHeight();
+        String comercial = "";
 
         //Criando o documento PDF
         PdfDocument documentoPdf = new PdfDocument();
@@ -147,15 +150,25 @@ public class ContatoActivity extends AppCompatActivity {
         PdfDocument.PageInfo configuracaoPagina = new PdfDocument.PageInfo.Builder(largura, altura, 1).create();
         PdfDocument.Page pagina = documentoPdf.startPage(configuracaoPagina);
 
-        //Criando um snapshot da view na página PDF
-        conteudo.draw(pagina.getCanvas());
+        //Salvando os dados sem os botões
+        Paint paint = new Paint();
+        paint.setColor(Color.BLACK);
+
+        pagina.getCanvas().drawText("Nome: " + contato.getNome(),10, 30, paint);
+        pagina.getCanvas().drawText("Email: " + contato.getEmail(),10, 60, paint);
+        if(contato.getTefoneComercial()){
+            comercial = " (Comercial)";
+        }
+        pagina.getCanvas().drawText("Telefone: " + contato.getTelefone() + comercial,10, 90, paint);
+        pagina.getCanvas().drawText("Celular: " + contato.getCelular(),10, 120, paint);
+        pagina.getCanvas().drawText("Site: " + contato.getSitePessoal(),10, 150, paint);
+
 
         documentoPdf.finishPage(pagina);
 
-        //Salvar arquivo PDF
-        File diretorioDocumentos = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath());
+        File diretorio = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath());
         try {
-            File documento = new File(diretorioDocumentos, contato.getNome().replace(" ", "_") + ".pdf");
+            File documento = new File(diretorio, contato.getNome().replace(" ", "_")+".pdf");
             documento.createNewFile();
             documentoPdf.writeTo(new FileOutputStream(documento));
             documentoPdf.close();

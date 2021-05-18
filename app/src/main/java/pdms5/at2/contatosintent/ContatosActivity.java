@@ -15,7 +15,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -153,6 +152,8 @@ public class ContatosActivity extends AppCompatActivity {
                 startActivityForResult(editarContatoIntent, EDITAR_CONTATO_REQUEST_CODE);
                 return true;
             case R.id.removerContatoMi:
+                contatosList.remove(menuInfo.position);
+                contatosAdapter.notifyDataSetChanged();
                 return true;
             default:
                 return false;
