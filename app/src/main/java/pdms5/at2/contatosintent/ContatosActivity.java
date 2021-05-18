@@ -29,6 +29,7 @@ public class ContatosActivity extends AppCompatActivity {
     private ContatosAdapter contatosAdapter;
     private final int NOVO_CONTATO_REQUEST_CODE = 0;
     private final int CALL_PHONE_PERMISSION_REQUEST_CODE = 1;
+    private final int EDITAR_CONTATO_REQUEST_CODE = 2;
 
     private Contato contato;
 
@@ -55,6 +56,13 @@ public class ContatosActivity extends AppCompatActivity {
         // Registrando listView para o menu de contexto
         registerForContextMenu(activityContatosBinding.contatosLv);
 
+        // Associar um listener de clique para o listView
+        activityContatosBinding.contatosLv.setOnItemClickListener(((parent, view, position, id) -> {
+            contato = contatosList.get(position);
+            Intent detalhesIntent = new Intent(this, ContatoActivity.class);
+            detalhesIntent.putExtra(Intent.EXTRA_USER, contato);
+            startActivity(detalhesIntent);
+        }));
     }
 
     //Somente para teste
@@ -96,6 +104,17 @@ public class ContatosActivity extends AppCompatActivity {
                 contatosList.add(contato);
                 contatosAdapter.notifyDataSetChanged();
             }
+        }   else if(requestCode == EDITAR_CONTATO_REQUEST_CODE && resultCode == RESULT_OK){
+            //Atualiza o contato
+            Contato contato = (Contato) data.getSerializableExtra(Intent.EXTRA_USER);
+            int posicao = data.getIntExtra(Intent.EXTRA_INDEX, -1);
+
+            if (contato != null && posicao != -1){
+                contatosList.remove(posicao);
+                contatosList.add(posicao, contato);
+                contatosAdapter.notifyDataSetChanged();
+            }
+
         }
     }
 
@@ -127,9 +146,11 @@ public class ContatosActivity extends AppCompatActivity {
                 acessarSitePessoalIntent.setData(Uri.parse("https://" + contato.getSitePessoal()));
                 startActivity(acessarSitePessoalIntent);
                 return true;
-            case R.id.detalhesContatoMi:
-                return true;
             case R.id.editarContatoMi:
+                Intent editarContatoIntent = new Intent(this, ContatoActivity.class);
+                editarContatoIntent.putExtra(Intent.EXTRA_USER, contato);
+                editarContatoIntent.putExtra(Intent.EXTRA_INDEX, menuInfo.position);
+                startActivityForResult(editarContatoIntent, EDITAR_CONTATO_REQUEST_CODE);
                 return true;
             case R.id.removerContatoMi:
                 return true;
@@ -137,6 +158,7 @@ public class ContatosActivity extends AppCompatActivity {
                 return false;
         }
     }
+
     private void verifyCallPhonePermission() {
         Intent ligarIntent = new Intent(Intent.ACTION_CALL);
         ligarIntent.setData(Uri.parse("tel: " + contato.getTelefone()));
@@ -150,7 +172,6 @@ public class ContatosActivity extends AppCompatActivity {
         }   else{
             startActivity(ligarIntent);
         }
-
     }
 
     @Override
